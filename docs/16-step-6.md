@@ -8,7 +8,7 @@ Registering the asset is a mechanism to push metadata about an existing software
 
 Pushing metadata is possible in Software heritage using the [`swh-deposit`](https://docs.softwareheritage.org/devel/swh-deposit/index.html).
 
-At the same time, a `save-code-now` is triggered by the Open Access repository to ensure the latest snapshot of the full repository, including all branches and releases, is archived.
+At the same time, a `save-code-now` is triggered by the Open Access infrastructure to ensure the latest snapshot of the full code repository, including all branches and releases, is archived.
 
 **The trigger:** URL identified for save code now.
 
