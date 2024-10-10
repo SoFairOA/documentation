@@ -1,10 +1,10 @@
-# Step 9: Deposit (article) metadata record (optional - depends on OA)
+# Step 9: Deposit (article) metadata record (optional - depends on OA repository)
 
 ## Context
 
 **Trigger**: archived repository done.
 
-**End result:** origin metadata in Software Heritage is updated with link to article with software mention information, identifying authority as OA + CORE.
+**End result:** origin metadata in Software Heritage is updated with link to article with software mention information, identifying authority as OA repository + CORE.
 
 From the paper metadata: 
 
