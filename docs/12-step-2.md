@@ -31,9 +31,30 @@ Shown below (Figure 1) is an example of how the author uploads their manuscript 
 
 ### 2.3 The OA exposes metadata in as part of the metadata record, to be harvested using OAI-PMH protocol, using one of the following:
 
-    * `datacite:relatedIdentifier` (for OpenAIRE) 
-    * `dc:relation` 
-    * `rioxx:ext_relation` ([https://rioxx.net/profiles/#dc:relation](https://rioxx.net/profiles/#dc:relation))
+The current basic Dublin Core metadata standard does not specify in detail how a software mention should be specified, however even if not explicitly the most common metadata extension for research papers allow the definition of the software mention using the “relation” tags.
+
+```
+<dc:relation>SWHID<dc:relation>
+```
+
+
+[RIOXX](https://rioxx.net/profiles/) offers the tag [`rioxx:ext_relation`](https://rioxx.net/profiles/#rioxxterms:ext_relation), a possible example of a software mention should look something like this:
+
+```
+<rioxxterms:ext_relation 
+   rel="cite-as"            
+   coar_type="https://purl.org/coar/resource_type/c_5ce6">
+           SWHID
+</rioxxterms:ext_relation>
+```
+
+OpenAire guidelines use [`datacite:relatedIdentifier`](https://openaire-guidelines-for-literature-repository-managers.readthedocs.io/en/v4.0.0/field_relatedidentifier.html#dci-relatedidentifier)
+
+```
+<datacite:relatedIdentifiers>
+   <datacite:relatedIdentifier relatedIdentifierType="URL" relationType="Cites">SWHID</datacite:relatedIdentifier>
+</datacite:relatedIdentifiers>
+```
 
 ## Extra information for infrastructures on software metadata and citation 
 
