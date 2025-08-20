@@ -1,0 +1,145 @@
+{
+    "@context": "https://w3id.org/codemeta/3.0",
+    "applicationCategory": "SoftwareSourceCode",
+    "author": [
+        {
+            "name": "The SoFAIR consortium",
+            "@id": "https://sofair.org/",
+            "@type": "Organization"
+        },
+        {
+            "name": "Software Heritage",
+            "@id": "https://ror.org/02etvq888",
+            "@type": "Organization"
+        },
+        {
+            "name": "The Open University",
+            "@id": "https://ror.org/05mzfcs16",
+            "@type": "Organization"
+        },
+        {
+            "name": " Institut national de recherche en sciences et technologies du numérique",
+            "@id": "https://ror.org/02kvxyf05",
+            "@type": "Organization"
+        },
+        {
+            "affiliation": {
+                "name": "The Open University",
+                "@type": "Organization"
+            },
+            "familyName": "Pride",
+            "givenName": "David",
+            "@id": "https://orcid.org/0000-0002-7162-7252",
+            "@type": "Person"
+        },
+        {
+            "affiliation": {
+                "name": "Software Heritage",
+                "@type": "Organization"
+            },
+            "familyName": "Jonin",
+            "givenName": "Hélène",
+            "@type": "Person"
+        },
+        {
+            "affiliation": {
+                "name": "Software Heritage",
+                "@type": "Organization"
+            },
+            "familyName": "Gruenpeter",
+            "givenName": "Morane ",
+            "@id": "https://orcid.org/0000-0002-9777-5560",
+            "@type": "Person"
+        },
+        {
+            "affiliation": {
+                "name": "The Open University",
+                "@type": "Organization"
+            },
+            "familyName": "Knoth",
+            "givenName": "Petr",
+            "@id": "https://orcid.org/0000-0003-1161-7359",
+            "@type": "Person"
+        },
+        {
+            "affiliation": {
+                "name": "The Open University",
+                "@type": "Organization"
+            },
+            "familyName": "Cancellieri",
+            "givenName": "Matteo",
+            "@id": "https://orcid.org/0000-0002-9558-9772",
+            "@type": "Person"
+        },
+        {
+            "affiliation": {
+                "name": " Institut national de recherche en sciences et technologies du numérique",
+                "@type": "Organization"
+            },
+            "familyName": "Monteil",
+            "givenName": "Alain",
+            "@id": "https://orcid.org/0000-0003-3150-4837",
+            "@type": "Person"
+        },
+        {
+            "affiliation": {
+                "name": "Software Heritage",
+                "@type": "Organization"
+            },
+            "familyName": "Douard",
+            "givenName": "David",
+            "@type": "Person"
+        },
+        {
+            "affiliation": {
+                "name": "Software Heritage",
+                "@type": "Organization"
+            },
+            "familyName": "Boyer",
+            "givenName": "Renaud",
+            "@id": "https://orcid.org/0009-0002-7456-0353",
+            "@type": "Person"
+        }
+    ],
+    "codeRepository": "https://github.com/SoFairOA/documentation",
+    "dateCreated": "2024-05-15",
+    "dateModified": "2025-07-04",
+    "description": "Documentation of the workflow for software assets lifecycle management for developers.",
+    "downloadUrl": "https://github.com/SoFairOA/documentation/releases",
+    "funding": {
+        "@type": "Grant",
+        "name": "CHIST-ERA Open & Re-usable Research Data & Software (2022/04/Y/HS2/00182)",
+        "funder": {
+            "@type": "Organization",
+            "name": "CHIST-ERA",
+            "url": "https://www.chistera.eu/"
+        }
+    },
+    "keywords": [
+        "research",
+        "software",
+        "SWHID",
+        "scholarly document",
+        "Open Access"
+    ],
+    "license": "https://spdx.org/licenses/CC-BY-4.0",
+    "name": "SoFAIR documentation",
+    "programmingLanguage": "python",
+    "relatedLink": "https://sofairoa.github.io/documentation/",
+    "softwareRequirements": [
+        {
+            "name": "mkdocs",
+            "version": "==1.6.0"
+        },
+        {
+            "name": "mkdocs-mermaid2-plugin",
+            "version": "==1.1.1"
+        },
+        {
+            "name": "mkdocs-macros-plugin",
+            "version": "==1.3.7"
+        }
+    ],
+    "issueTracker": "https://github.com/SoFairOA/documentation/issues",
+    "@type": "SoftwareSourceCode"
+}

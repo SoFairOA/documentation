@@ -1,4 +1,5 @@
-site_name: Documentation
+site_name: SoFAIR Documentation
+site_url: https://sofairoa.github.io/documentation/
 repo_url: 'https://github.com/SoFairOA/documentation'
 edit_uri_template: 'blob/main/docs/{path}'
 nav:
@@ -18,7 +19,7 @@ nav:
   - 'Step 9: Metadata deposit metadata': 19-step-9.md
   - 'Annex A: Bibliography': A-bibliography.md
 theme: readthedocs
-copyright: Copyright &copy; 2024-2025 SoFAIR Contributors.
+copyright: Copyright &copy; 2024-2025 SoFAIR Contributors, licensed under the CC-BY-4.0.
 markdown_extensions:
   - codehilite:
       guess_lang: false
@@ -27,8 +28,13 @@ markdown_extensions:
 plugins:
   - mermaid2
   - search
+  - macros:
+      on_error_fail: true
+      on_undefined: strict
 extra_css:
   - css/extra.css
 extra_javascript:
   - js/clipboard.min.js
   - js/extra.js
+extra:
+  version: 2025.08

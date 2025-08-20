@@ -90,3 +90,9 @@ or an iframe:
         src="https://archive.softwareheritage.org/browse/embed/swh:1:dir:bc7ddd62cf3d72ffdc365e1bf2dea6eeaa44e185;origin=https://github.com/rdicosmo/parmap;visit=swh:1:snp:8ddca416836fbbc2a7704c69db38739bef6b6cae;anchor=swh:1:rev:ecd3744ed558da4ea2bf9eb87b80b8949f417126/">
 </iframe>
 ```
+
+### 8.3 Add SWHID in Dublin Core metadata
+
+See [Step 2.3](12-step-2.md)
+
+## Edge cases
