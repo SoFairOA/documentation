@@ -24,6 +24,7 @@ The sequence diagram below is the nominal scenario of the full workflow.
 
 ```mermaid
 sequenceDiagram
+    autonumber
     Participant Research team
     Participant Forge
     Participant OA Repository
@@ -43,15 +44,20 @@ sequenceDiagram
     CORE->>OA Repository: 3.1 harvest metadata (OAI-PMH)
     OA Repository-->>CORE: Dublin Core metadata
     CORE->>CORE: 3.2 extract software mention (detailed in CORE flow sequence)
-
+    
     CORE->>SWH: 9.1 Notify Software Heritage of the mention
-
-    alt accept
-        SWH->>CORE: 9.2 Software Heritage accepts the mention
-    else reject
-        SWH->>CORE: 9.3 Software Heritage rejects the mention
+    SWH->>CORE: 9.2 Software Heritage Tentatively Accept the mention
+    SWH->>SWH: 7 Trigger a Save Code Now<br> to archive the software
+    alt can't archive the software and no known archive
+        SWH->>CORE: 9.5 Software Heritage rejects the mention
+    else software is archived
+        SWH->>SWH: 9.3 Ingest mention
+        alt mention ingestion succeeded
+            SWH->>CORE: 9.4 Software Heritage accepts the mention
+        else reject
+            SWH->>CORE: 9.5 Software Heritage rejects the mention
+        end
     end
-
     CORE->>OA Repository: 4. notify validation request
     OA Repository->>Research team: 5.1 send mention validation request
 
@@ -65,13 +71,12 @@ sequenceDiagram
         OA Repository-->>CORE: 5.2.2.1 send new properties
         CORE->>CORE: 5.2.2.2 mark changes
         CORE->>SWH: 9.4 Undo previous notification sent to Software Heritage
-        CORE->>SWH: 9.1 Notify Software Heritage of the (corrected) mention
+        CORE->>SWH: 9.1 Notify Software Heritage of the (corrected) mention<br> (this triggers the workflow described at step number 10) 
     else reject or no-reply
         Research team-->>OA Repository: 5.2.3 reject mentions
         OA Repository-->>CORE: 5.2.3.1 send rejection
         CORE->>CORE: 5.2.3.2 mark mention as rejected
-        CORE->>SWH: 9.4 Undo previous notification sent to Software Heritage
-        
+        CORE->>SWH: 9.6 Undo previous notification sent to Software Heritage
     end
 
     OA Repository->>SWH: 6 trigger software archive using API

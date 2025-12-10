@@ -91,13 +91,56 @@ through an authenticated `POST` request to
 }
 ```
 
-## 9.2 Software Heritage accepts the mention
+## 9.2 Software Heritage tentatively accepts the mention
+
+The mention sent in step 9.1 is structurally valid, Software Heritage acknowledge its 
+reception with a [Tentatively Accept pattern](https://coar-notify.net/specification/1.0.1/tentative-accept/).
+
+Software Heritage COAR Notify server sends a Notification to the inbox indicated in the
+`origin` key of the original Notification, mentioning its `id` in the `inReplyTo` key
+and containing the original message (except its `@context`) in the `object`.
+
+```json
+{
+  "@context": [
+    "https://www.w3.org/ns/activitystreams",
+    "https://coar-notify.net"
+  ],
+  "id": "urn:uuid:4fb3af44-d4f8-4226-9475-2d09c2d8d9e0",
+  "inReplyTo": "urn:uuid:6908e2d0-ab41-4fbf-8b27-e6d6cf1f7b95",
+    "object": {
+    ...
+  },
+  "target": {
+    "id": "https://core.co.uk",
+    "inbox": "https://inbox.core.co.uk",
+    "type": "Service"
+  },
+  "origin": {
+    "id": "https://www.softwareheritage.org",
+    "inbox": "https://inbox.softwareheritage.org",
+    "type": "Service"
+  },
+  "summary": "The offer has been tentatively accepted, subject to further review.",
+  "type": "TentativeAccept"
+}
+```
+
+## 9.3 Software Heritage ingest the mention
+
+The raw Notification is archived in the metadata storage and processed to build an
+Extrinsic Metadata object attached to the `software_repository_origin_link`. This object
+is then indexed by the search engine and made available through the 
+[extrinsic-metadata API](https://archive.softwareheritage.org/api/1/extrinsic-metadata/origin/doc/)
+endpoint.
+
+## 9.4 Software Heritage accepts the mention
 
 The mention sent in step 9.1 has been successfully archived.
 
 Software Heritage COAR Notify server sends a Notification to the inbox indicated in the
 `origin` key of the original Notification, mentioning its `id` in the `inReplyTo` key
-and containing the original message (except its `@context`) in the `object` key.
+and containing the original message (except its `@context`) in the `object`.
 
 ```json
 {
@@ -125,9 +168,13 @@ and containing the original message (except its `@context`) in the `object` key.
 }
 ```
 
-## 9.3 Software Heritage rejects the mention
+## 9.5 Software Heritage rejects the mention
 
-The mention sent in step 9.1 has been rejected because something went wrong.
+The mention sent in step 9.1 has been rejected because: 
+
+- the notification is structurally invalid 
+- the software mentioned can't be archived
+- something went wrong when ingesting the mention
 
 Software Heritage COAR Notify server sends a Notification to the inbox indicated in the
 `origin` key of the original Notification, mentioning its `id` in the `inReplyTo` key
@@ -162,13 +209,13 @@ The error message explaining the reason why it was rejected will be found in the
 }
 ```
 
-## 9.4 Undo previous notification sent to Software Heritage
+## 9.6 Undo previous notification sent to Software Heritage
 
 The mention sent in step 9.1 has been rejected by the author of the article. 
 
 Send a `Undo` COAR Notification to the Software Heritage Inbox mentioning the `id` of
 Notification sent in 9.1 in the `inReplyTo` key and containing the original message
-(except its `@context`) in the `object` key.
+(except its `@context`) in the `object`.
 
 ```json
 {
@@ -196,10 +243,14 @@ Notification sent in 9.1 in the `inReplyTo` key and containing the original mess
 }
 ```
 
+This Notification is ingested by Software Heritage (see 9.3) and remove the Extrinsic 
+Metadata object previously created.
+
 ## Edge cases
 
 * URL or SWHID aren’t available
     * Rejected save code now request and rejected deposit
+* An unknown failure happened while ingesting the mention
 
 ### Error cases
 
@@ -210,6 +261,6 @@ Notification sent in 9.1 in the `inReplyTo` key and containing the original mess
 * You receive an `UnprocessableNotification` in response to your mention
    * Software Heritage inbox url MUST match the `payload['target']['inbox']` value in 
      the notification.
+  * `payload['object']['as:object']` is neither an URL nor a (Qualified) SWHID
 * You receive a `Reject` notification in response to your mention
-   * `context['id']` MUST match `object['as:object']`
    * `context['type']` MUST contain `sorg:SoftwareSourceCode`
